@@ -1,0 +1,54 @@
+{
+  "project": "REWE / Picnic",
+  "layers": {
+    "frontend_ui": {
+      "components": [
+        { "id": "product_search", "label": "Product search", "type": "core" },
+        { "id": "cart_builder", "label": "Cart builder", "type": "core" },
+        { "id": "deeplink", "label": "Deeplink for order checkout", "type": "supporting" },
+        { "id": "recipes", "label": "Recipes", "type": "supporting" },
+        { "id": "order_scheduler", "label": "Order scheduler (Kaufda)", "type": "supporting" },
+        { "id": "savings_display", "label": "Savings display", "type": "core" }
+      ]
+    },
+    "backend": {
+      "components": [
+        { "id": "products_db", "label": "Products DB", "type": "core" },
+        { "id": "shopping_carts", "label": "Shopping carts", "type": "core" },
+        { "id": "promotions", "label": "Promotions", "type": "supporting" },
+        { "id": "users", "label": "Users", "type": "supporting" },
+        { "id": "receipt_analysis", "label": "Receipt analysis", "type": "ai" },
+        { "id": "favourite_products", "label": "Favourite products", "type": "user_data" }
+      ]
+    },
+    "mcp": {
+      "components": [
+        { "id": "name_normalisation", "label": "Name normalisation", "type": "supporting" },
+        { "id": "ranking", "label": "Ranking", "type": "supporting" },
+        { "id": "similar_product_search", "label": "Similar product search", "type": "supporting" },
+        { "id": "cv_receipt_scan", "label": "CV receipt scan", "type": "ai" }
+      ]
+    }
+  },
+  "data_flows": [
+    { "from": "product_search", "to": "products_db", "label": "query", "async": false },
+    { "from": "products_db", "to": "product_search", "label": "ranked list", "async": false },
+    { "from": "products_db", "to": "product_search", "label": "cheapest match", "async": false },
+    { "from": "cart_builder", "to": "shopping_carts", "label": "cart data", "async": false },
+    { "from": "recipes", "to": "products_db", "label": "dish", "async": false },
+    { "from": "products_db", "to": "recipes", "label": "ingredients", "async": false },
+    { "from": "promotions", "to": "order_scheduler", "label": "discounts", "async": false },
+    { "from": "shopping_carts", "to": "savings_display", "label": "promo alerts", "async": true },
+    { "from": "favourite_products", "to": "savings_display", "label": "favourites", "async": false },
+    { "from": "products_db", "to": "name_normalisation", "label": "", "async": false },
+    { "from": "products_db", "to": "ranking", "label": "", "async": false },
+    { "from": "products_db", "to": "similar_product_search", "label": "", "async": true },
+    { "from": "receipt_analysis", "to": "cv_receipt_scan", "label": "", "async": false }
+  ],
+  "component_types": {
+    "core": "Primary user-facing or data feature",
+    "ai": "AI / computer-vision feature",
+    "user_data": "Persistent user data",
+    "supporting": "Infrastructure or helper component"
+  }
+}

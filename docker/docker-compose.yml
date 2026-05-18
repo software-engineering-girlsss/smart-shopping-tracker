@@ -1,0 +1,73 @@
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    image: shopping-planer-backend:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/shoppingplaner
+      SPRING_DATASOURCE_USERNAME: planer
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      APP_REWE_CERT_FILE: ${APP_REWE_CERT_FILE:-}
+      APP_REWE_KEY_FILE: ${APP_REWE_KEY_FILE:-}
+      APP_REWE_SERVICE_TYPE: ${APP_REWE_SERVICE_TYPE:-DELIVERY}
+      APP_REWE_ZIP_CODE: ${APP_REWE_ZIP_CODE:-}
+      APP_PICNIC_EMAIL: ${APP_PICNIC_EMAIL:-}
+      APP_PICNIC_PASSWORD: ${APP_PICNIC_PASSWORD:-}
+      APP_PICNIC_COUNTRY: ${APP_PICNIC_COUNTRY:-de}
+      APP_PICNIC_AUTH_TOKEN: ${APP_PICNIC_AUTH_TOKEN:-}
+      APP_OPENAI_API_KEY: ${APP_OPENAI_API_KEY:-}
+      APP_INVITE_TOKENS: ${APP_INVITE_TOKENS:-}
+      APP_SUPABASE_URL: ${APP_SUPABASE_URL:-}
+      APP_SUPABASE_ANON_KEY: ${APP_SUPABASE_ANON_KEY:-}
+      APP_SUPABASE_SERVICE_KEY: ${APP_SUPABASE_SERVICE_KEY:-}
+      APP_SUPABASE_JWT_SECRET: ${APP_SUPABASE_JWT_SECRET:-}
+      APP_FRONTEND_URL: ${APP_FRONTEND_URL:-}
+      APP_ENCRYPTION_KEY: ${APP_ENCRYPTION_KEY:-}
+      APP_MANAGEMENT_PASSWORD: ${APP_MANAGEMENT_PASSWORD}
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - ${CERTS_DIR:-./certs}:/certs:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/v1/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --save "" --appendonly no
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: shoppingplaner
+      POSTGRES_USER: planer
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U planer -d shoppingplaner"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  pgdata:

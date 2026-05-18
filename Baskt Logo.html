@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baskt — Brand Identity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:        #E8622A;
+      --orange-dark:   #C04E1E;
+      --orange-mid:    #F07840;
+      --orange-light:  #F5B49A;
+      --orange-pale:   #FAE5DC;
+      --bg:            #F2EDE8;
+      --bg2:           #EAE3DC;
+      --bg3:           #E0D8CF;
+      --text:          #1B4332;
+      --text-muted:    #8B7B6E;
+      --white:         #FDFAF8;
+      --border:        #DDD5CC;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+
+    .sheet-header {
+      padding: 56px 64px 40px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .sheet-header h1 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .sheet-header p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .swatches {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .swatch-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .section {
+      padding: 56px 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .row {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .col { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .col-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .on-light {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+    .on-warm {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+    .on-dark {
+      background: #1B4332;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+    .on-orange {
+      background: var(--orange);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+    }
+
+    .app-icon-wrap {
+      border-radius: 22.4%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .header-mockup {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 390px;
+    }
+    .header-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-bar-dark {
+      background: #1B4332;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-content-preview {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .skeleton { background: var(--bg2); border-radius: 6px; }
+
+    .landing-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 60px 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .icon-xl  { width: 120px; height: 120px; }
+    .icon-lg  { width: 80px;  height: 80px;  }
+    .icon-md  { width: 52px;  height: 52px;  }
+    .icon-sm  { width: 36px;  height: 36px;  }
+    .icon-xs  { width: 24px;  height: 24px;  }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     SHEET HEADER
+════════════════════════════ -->
+<header class="sheet-header">
+  <div>
+    <h1>Baskt — Brand Identity</h1>
+    <p>Smart shopping · Real savings · Germany</p>
+  </div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="swatch-dot" style="background:#E8622A"></div>
+      <span>#E8622A</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-dot" style="background:#C04E1E"></div>
+      <span>#C04E1E</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-dot" style="background:#F2EDE8"></div>
+      <span>#F2EDE8</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-dot" style="background:#8B7B6E"></div>
+      <span>#8B7B6E</span>
+    </div>
+    <div class="swatch">
+      <div class="swatch-dot" style="background:#1B4332"></div>
+      <span>#1B4332</span>
+    </div>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════
+     BASKET ICON SVG — reusable snippet
+     Body: warm beige #F2EDE8
+     Rim: dark brown #1B4332
+     Handle: orange #E8622A
+     Grid lines: #8B7B6E
+════════════════════════════ -->
+
+<!-- 1 · APP ICON -->
+<section class="section">
+  <div class="section-label">01 — App Icon</div>
+  <div class="row">
+
+    <!-- Large, on white bg -->
+    <div class="col">
+      <div class="app-icon-wrap icon-xl" style="background:#FDFAF8;">
+        <svg viewBox="0 0 100 100" width="78" height="78" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="b1">
+              <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/>
+            </clipPath>
+          </defs>
+          <path d="M 21 45 C 21 12 79 12 79 45"
+                stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"
+                fill="#F2EDE8"/>
+          <g clip-path="url(#b1)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+            <line x1="0" y1="54" x2="100" y2="54"/>
+            <line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/>
+            <line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+        </svg>
+      </div>
+      <span class="col-label">512 × 512</span>
+    </div>
+
+    <!-- Medium -->
+    <div class="col">
+      <div class="app-icon-wrap icon-lg" style="background:#FDFAF8;">
+        <svg viewBox="0 0 100 100" width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="b2"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+          <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+          <g clip-path="url(#b2)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+            <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+        </svg>
+      </div>
+      <span class="col-label">180 × 180</span>
+    </div>
+
+    <!-- Small -->
+    <div class="col">
+      <div class="app-icon-wrap icon-md" style="background:#FDFAF8;">
+        <svg viewBox="0 0 100 100" width="33" height="33" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="b3"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+          <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+          <g clip-path="url(#b3)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+            <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+        </svg>
+      </div>
+      <span class="col-label">60 × 60</span>
+    </div>
+
+    <!-- On orange BG -->
+    <div class="col">
+      <div class="app-icon-wrap icon-xl" style="background:#E8622A;">
+        <svg viewBox="0 0 100 100" width="78" height="78" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="b4"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+          <path d="M 21 45 C 21 12 79 12 79 45" stroke="#FDFAF8" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#FDFAF8"/>
+          <g clip-path="url(#b4)" stroke="#C04E1E" stroke-width="1.6" fill="none" opacity="0.4">
+            <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#C04E1E"/>
+        </svg>
+      </div>
+      <span class="col-label">Orange background</span>
+    </div>
+
+    <!-- On dark BG -->
+    <div class="col">
+      <div class="app-icon-wrap icon-xl" style="background:#1B4332;">
+        <svg viewBox="0 0 100 100" width="78" height="78" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="b5"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+          <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+          <g clip-path="url(#b5)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+            <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#2D6A4F"/>
+        </svg>
+      </div>
+      <span class="col-label">Dark background</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════
+     2 · SITE LOGO (horizontal)
+════════════════════════════ -->
+<section class="section">
+  <div class="section-label">02 — Site Logo · Horizontal Lockup</div>
+  <div class="row" style="align-items: stretch;">
+
+    <!-- On light -->
+    <div class="col" style="gap:12px;">
+      <div class="on-light" style="width:320px; height:80px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <svg viewBox="0 0 100 100" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+            <defs><clipPath id="s1"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+            <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+            <g clip-path="url(#s1)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+              <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+              <line x1="0" y1="82" x2="100" y2="82"/>
+              <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+              <line x1="70" y1="38" x2="73" y2="96"/>
+            </g>
+            <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+          </svg>
+          <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:30px; color:#E8622A; letter-spacing:-0.03em; line-height:1;">baskt</span>
+        </div>
+      </div>
+      <span class="col-label">On white</span>
+    </div>
+
+    <!-- On warm beige -->
+    <div class="col" style="gap:12px;">
+      <div class="on-warm" style="width:320px; height:80px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <svg viewBox="0 0 100 100" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+            <defs><clipPath id="s2"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+            <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#FDFAF8"/>
+            <g clip-path="url(#s2)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+              <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+              <line x1="0" y1="82" x2="100" y2="82"/>
+              <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+              <line x1="70" y1="38" x2="73" y2="96"/>
+            </g>
+            <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+          </svg>
+          <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:30px; color:#E8622A; letter-spacing:-0.03em; line-height:1;">baskt</span>
+        </div>
+      </div>
+      <span class="col-label">On warm beige</span>
+    </div>
+
+    <!-- On dark -->
+    <div class="col" style="gap:12px;">
+      <div class="on-dark" style="width:320px; height:80px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <svg viewBox="0 0 100 100" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+            <defs><clipPath id="s3"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+            <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+            <g clip-path="url(#s3)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+              <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+              <line x1="0" y1="82" x2="100" y2="82"/>
+              <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+              <line x1="70" y1="38" x2="73" y2="96"/>
+            </g>
+            <rect x="6" y="34" width="88" height="12" rx="4" fill="#2D6A4F"/>
+          </svg>
+          <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:30px; color:#FDFAF8; letter-spacing:-0.03em; line-height:1;">baskt</span>
+        </div>
+      </div>
+      <span class="col-label">On dark</span>
+    </div>
+
+    <!-- On orange -->
+    <div class="col" style="gap:12px;">
+      <div class="on-orange" style="width:320px; height:80px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <svg viewBox="0 0 100 100" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+            <defs><clipPath id="s4"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+            <path d="M 21 45 C 21 12 79 12 79 45" stroke="#FDFAF8" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#FDFAF8"/>
+            <g clip-path="url(#s4)" stroke="#C04E1E" stroke-width="1.6" fill="none" opacity="0.4">
+              <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+              <line x1="0" y1="82" x2="100" y2="82"/>
+              <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+              <line x1="70" y1="38" x2="73" y2="96"/>
+            </g>
+            <rect x="6" y="34" width="88" height="12" rx="4" fill="#C04E1E"/>
+          </svg>
+          <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:30px; color:#FDFAF8; letter-spacing:-0.03em; line-height:1;">baskt</span>
+        </div>
+      </div>
+      <span class="col-label">On brand orange</span>
+    </div>
+
+  </div>
+
+  <!-- Size variants -->
+  <div class="row" style="margin-top: 40px; align-items:flex-end;">
+    <div class="col" style="gap:10px;">
+      <div class="on-light" style="padding:20px 28px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg viewBox="0 0 100 100" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+            <defs><clipPath id="ss1"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+            <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+            <g clip-path="url(#ss1)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+              <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+              <line x1="0" y1="82" x2="100" y2="82"/>
+              <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+              <line x1="70" y1="38" x2="73" y2="96"/>
+            </g>
+            <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+          </svg>
+          <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:24px; color:#E8622A; letter-spacing:-0.03em;">baskt</span>
+        </div>
+      </div>
+      <span class="col-label">Medium (nav)</span>
+    </div>
+
+    <div class="col" style="gap:10px;">
+      <div class="on-light" style="padding:16px 22px;">
+        <div style="display:flex; align-items:center; gap:7px;">
+          <svg viewBox="0 0 100 100" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+            <defs><clipPath id="ss2"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+            <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+            <g clip-path="url(#ss2)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+              <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+              <line x1="0" y1="82" x2="100" y2="82"/>
+              <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+              <line x1="70" y1="38" x2="73" y2="96"/>
+            </g>
+            <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+          </svg>
+          <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:17px; color:#E8622A; letter-spacing:-0.03em;">baskt</span>
+        </div>
+      </div>
+      <span class="col-label">Small (favicon)</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════
+     3 · LANDING / GENERAL LOGO
+════════════════════════════ -->
+<section class="section">
+  <div class="section-label">03 — Landing / General Logo</div>
+  <div class="row" style="align-items: flex-start; gap: 32px;">
+
+    <!-- Stacked on light -->
+    <div class="col" style="gap:16px;">
+      <div class="landing-wrap">
+        <svg viewBox="0 0 100 100" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="l1"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+          <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+          <g clip-path="url(#l1)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+            <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+        </svg>
+        <div style="text-align:center;">
+          <div style="font-family:'Poppins',sans-serif; font-weight:900; font-size:52px; color:#E8622A; letter-spacing:-0.04em; line-height:1;">baskt</div>
+          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#8B7B6E; letter-spacing:0.06em; text-transform:uppercase; margin-top:8px;">Smart shopping · Real savings</div>
+        </div>
+      </div>
+      <span class="col-label">Stacked · Light</span>
+    </div>
+
+    <!-- Stacked on dark -->
+    <div class="col" style="gap:16px;">
+      <div style="background:#1B4332; border-radius:20px; padding:60px 72px; display:flex; flex-direction:column; align-items:center; gap:20px;">
+        <svg viewBox="0 0 100 100" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="l2"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+          <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+          <g clip-path="url(#l2)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+            <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#2D6A4F"/>
+        </svg>
+        <div style="text-align:center;">
+          <div style="font-family:'Poppins',sans-serif; font-weight:900; font-size:52px; color:#FDFAF8; letter-spacing:-0.04em; line-height:1;">baskt</div>
+          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:rgba(253,250,248,0.6); letter-spacing:0.06em; text-transform:uppercase; margin-top:8px;">Smart shopping · Real savings</div>
+        </div>
+      </div>
+      <span class="col-label">Stacked · Dark</span>
+    </div>
+
+    <!-- On orange -->
+    <div class="col" style="gap:16px;">
+      <div style="background:#E8622A; border-radius:20px; padding:60px 72px; display:flex; flex-direction:column; align-items:center; gap:20px;">
+        <svg viewBox="0 0 100 100" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="l3"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+          <path d="M 21 45 C 21 12 79 12 79 45" stroke="#FDFAF8" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+          <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#FDFAF8"/>
+          <g clip-path="url(#l3)" stroke="#C04E1E" stroke-width="1.6" fill="none" opacity="0.35">
+            <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+            <line x1="0" y1="82" x2="100" y2="82"/>
+            <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+            <line x1="70" y1="38" x2="73" y2="96"/>
+          </g>
+          <rect x="6" y="34" width="88" height="12" rx="4" fill="#C04E1E"/>
+        </svg>
+        <div style="text-align:center;">
+          <div style="font-family:'Poppins',sans-serif; font-weight:900; font-size:52px; color:#FDFAF8; letter-spacing:-0.04em; line-height:1;">baskt</div>
+          <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:rgba(253,250,248,0.75); letter-spacing:0.06em; text-transform:uppercase; margin-top:8px;">Smart shopping · Real savings</div>
+        </div>
+      </div>
+      <span class="col-label">Stacked · Orange</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════
+     4 · APP HEADER
+════════════════════════════ -->
+<section class="section" style="border-bottom:none;">
+  <div class="section-label">04 — App Header</div>
+  <div class="row" style="align-items: flex-start; gap:40px;">
+
+    <!-- Light header — matching screenshot -->
+    <div class="col" style="gap:12px;">
+      <div class="header-mockup">
+        <div class="header-bar">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 100 100" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="h1"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+              <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+              <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+              <g clip-path="url(#h1)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+                <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+                <line x1="0" y1="82" x2="100" y2="82"/>
+                <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+                <line x1="70" y1="38" x2="73" y2="96"/>
+              </g>
+              <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+            </svg>
+            <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:20px; color:#E8622A; letter-spacing:-0.03em;">baskt</span>
+          </div>
+          <div style="display:flex; gap:16px; align-items:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B7B6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <div style="position:relative;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B7B6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+              <div style="position:absolute;top:-4px;right:-4px;width:8px;height:8px;background:#E8622A;border-radius:50%;border:1.5px solid white;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="header-content-preview">
+          <div style="display:flex; gap:8px; margin-bottom:4px;">
+            <div class="skeleton" style="height:36px; width:100px;"></div>
+            <div class="skeleton" style="height:36px; width:80px;"></div>
+            <div class="skeleton" style="height:36px; width:90px;"></div>
+          </div>
+          <div class="skeleton" style="height:100px; width:100%; border-radius:12px;"></div>
+          <div class="skeleton" style="height:16px; width:60%;"></div>
+          <div class="skeleton" style="height:16px; width:40%;"></div>
+        </div>
+      </div>
+      <span class="col-label">Light · iOS/Android</span>
+    </div>
+
+    <!-- Dark header -->
+    <div class="col" style="gap:12px;">
+      <div style="background:#1B4332; border-radius:16px; overflow:hidden; width:390px;">
+        <div class="header-bar-dark">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <svg viewBox="0 0 100 100" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="h2"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+              <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+              <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+              <g clip-path="url(#h2)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+                <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+                <line x1="0" y1="82" x2="100" y2="82"/>
+                <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+                <line x1="70" y1="38" x2="73" y2="96"/>
+              </g>
+              <rect x="6" y="34" width="88" height="12" rx="4" fill="#2D6A4F"/>
+            </svg>
+            <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:20px; color:#FDFAF8; letter-spacing:-0.03em;">baskt</span>
+          </div>
+          <div style="display:flex; gap:16px; align-items:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(253,250,248,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <div style="position:relative;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(253,250,248,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+              <div style="position:absolute;top:-4px;right:-4px;width:8px;height:8px;background:#E8622A;border-radius:50%;border:1.5px solid #1B4332;"></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:20px; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:8px; margin-bottom:4px;">
+            <div style="background:#2D6A4F; border-radius:6px; height:36px; width:100px;"></div>
+            <div style="background:#2D6A4F; border-radius:6px; height:36px; width:80px;"></div>
+            <div style="background:#2D6A4F; border-radius:6px; height:36px; width:90px;"></div>
+          </div>
+          <div style="background:#2D6A4F; border-radius:12px; height:100px; width:100%;"></div>
+          <div style="background:#2D6A4F; border-radius:6px; height:16px; width:60%;"></div>
+          <div style="background:#2D6A4F; border-radius:6px; height:16px; width:40%;"></div>
+        </div>
+      </div>
+      <span class="col-label">Dark mode</span>
+    </div>
+
+    <!-- Compact nav -->
+    <div class="col" style="gap:12px;">
+      <div style="background:#FDFAF8; border:1px solid var(--border); border-radius:16px; overflow:hidden; width:200px;">
+        <div style="padding:12px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:center;">
+          <div style="display:flex; align-items:center; gap:7px;">
+            <svg viewBox="0 0 100 100" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="h3"><path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/></clipPath></defs>
+              <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+              <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="#F2EDE8"/>
+              <g clip-path="url(#h3)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+                <line x1="0" y1="54" x2="100" y2="54"/><line x1="0" y1="68" x2="100" y2="68"/>
+                <line x1="0" y1="82" x2="100" y2="82"/>
+                <line x1="30" y1="38" x2="27" y2="96"/><line x1="50" y1="38" x2="50" y2="96"/>
+                <line x1="70" y1="38" x2="73" y2="96"/>
+              </g>
+              <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+            </svg>
+            <span style="font-family:'Poppins',sans-serif; font-weight:900; font-size:18px; color:#E8622A; letter-spacing:-0.03em;">baskt</span>
+          </div>
+        </div>
+        <div style="padding:16px; display:flex; flex-direction:column; gap:8px;">
+          <div style="background:#EAE3DC; border-radius:6px; height:12px; width:80%;"></div>
+          <div style="background:#EAE3DC; border-radius:6px; height:12px; width:55%;"></div>
+          <div style="background:#EAE3DC; border-radius:6px; height:12px; width:70%;"></div>
+        </div>
+      </div>
+      <span class="col-label">Compact / Web nav</span>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

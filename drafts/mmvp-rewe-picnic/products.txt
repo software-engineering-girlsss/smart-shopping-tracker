@@ -1,0 +1,12 @@
+# Example product list
+# Format: name[, quantity[, unit]]
+# Lines starting with # are ignored.
+
+Milch 3.5%, 1, liter
+Butter, 250, g
+Eier, 10, stk
+Toilettenpapier
+Mozzarella
+Joghurt
+Kekse
+Avocado

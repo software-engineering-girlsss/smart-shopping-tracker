@@ -1,0 +1,65 @@
+databases:
+  - name: shopping-planer-db
+    plan: free
+    databaseName: shoppingplaner
+    user: planer
+
+services:
+  - type: web
+    name: shopping-planer-api
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: shopping-planer-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: shopping-planer-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: shopping-planer-db
+          property: password
+      - key: APP_REWE_SERVICE_TYPE
+        value: DELIVERY
+      - key: APP_REWE_ZIP_CODE
+        sync: false
+      # REWE certs: upload rewe.pem and rewe.key as Secret Files in Render dashboard
+      # Render places secret files at /etc/secrets/<filename>
+      - key: APP_REWE_CERT_FILE
+        value: /etc/secrets/rewe.pem
+      - key: APP_REWE_KEY_FILE
+        value: /etc/secrets/rewe.key
+      - key: APP_PICNIC_EMAIL
+        sync: false
+      - key: APP_PICNIC_PASSWORD
+        sync: false
+      - key: APP_PICNIC_COUNTRY
+        value: de
+      - key: APP_OPENAI_API_KEY
+        sync: false
+      - key: APP_INVITE_TOKENS
+        sync: false
+      # AES-256-GCM key for encrypting Picnic credentials at rest. Generate with:
+      #   openssl rand -base64 32
+      - key: APP_ENCRYPTION_KEY
+        sync: false
+      - key: APP_SUPABASE_URL
+        sync: false
+      - key: APP_SUPABASE_ANON_KEY
+        sync: false
+      - key: APP_SUPABASE_SERVICE_KEY
+        sync: false
+      - key: APP_SUPABASE_JWT_SECRET
+        sync: false
+      - key: APP_FRONTEND_URL
+        sync: false
+      - key: APP_MANAGEMENT_PASSWORD
+        sync: false

@@ -1,0 +1,17 @@
+{
+  "name": "Baskt",
+  "short_name": "Baskt",
+  "description": "Grocery price aggregator — find the cheapest basket across REWE and Picnic",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDFAF8",
+  "theme_color": "#E8622A",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

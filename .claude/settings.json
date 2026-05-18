@@ -1,0 +1,81 @@
+{
+  "env": {
+    "AGENT_ALLOW_COMMITS": "false"
+  },
+
+  "permissions": {
+    "allow": [
+      "Read(**)",
+
+      "Bash(make *)",
+
+      "Bash(./gradlew *)",
+      "Bash(gradle *)",
+      "Bash(java *)",
+
+      "Bash(docker *)",
+      "Bash(docker compose *)",
+      "Bash(docker-compose *)",
+
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(git fetch*)",
+      "Bash(git add*)",
+      "Bash(git checkout*)",
+      "Bash(git stash*)",
+      "Bash(git show*)",
+      "Bash(git ls-tree*)",
+      "Bash(git rm*)",
+      "Bash(git *)",
+
+      "Bash(gh *)",
+
+      "Bash(python3 *)",
+      "Bash(pip *)",
+
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Bash(chmod +x*)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(sed *)",
+      "Bash(awk *)",
+      "Bash(curl *)",
+
+      "Bash(lsof *)",
+      "Bash(kill *)",
+      "Bash(pkill *)",
+
+      "Bash(bash .claude/scripts/*)",
+
+      "WebFetch(domain:localhost)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ]
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git -C \"$(pwd)\" rev-parse --show-toplevel 2>/dev/null || echo .)\"/.claude/scripts/guard-commits.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

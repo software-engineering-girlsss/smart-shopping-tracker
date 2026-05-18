@@ -1,0 +1,11 @@
+# Override: use remote DB from env file, do not start local postgres
+# Usage: combined with docker-compose.yml via -f flag (see Makefile)
+#
+# depends_on cannot be cleared via merge, so backend-remote target
+# runs `up backend` explicitly — postgres is defined but never started.
+services:
+  backend:
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}

@@ -1,0 +1,62 @@
+# Build outputs
+**/build/
+**/.gradle/
+*.jar
+*.war
+*.class
+
+# Secrets & credentials
+.env
+*.env.local
+*.pem
+*.key
+*.p12
+*.jks
+.picnic-auth-token
+.picnic-device-id
+.normalization-cache.json
+
+# Claude Code local settings (per-developer)
+.claude/settings.local.json
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+ai-queries.log
+*-search.log
+
+# Android
+*.apk
+*.aab
+*.xapk
+local.properties
+
+# iOS
+*.xcuserstate
+xcuserdata/
+DerivedData/
+Pods/
+.build/
+
+# Gradle
+gradle-app.setting
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Postman
+postman/
+
+# Kotlin
+.kotlin/
+
+# Expo
+.expo/

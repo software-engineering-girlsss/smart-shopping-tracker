@@ -1,0 +1,88 @@
+spring:
+  application:
+    name: shopping-planer
+  sql:
+    init:
+      mode: never
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    baseline-version: 0
+  threads:
+    virtual:
+      enabled: true
+  data:
+    redis:
+      url: ${REDIS_URL:redis://localhost:6379}
+      timeout: 3s
+      connect-timeout: 3s
+      lettuce:
+        shutdown-timeout: 200ms
+  web:
+    resources:
+      static-locations: "classpath:/static/,file:./frontend/"
+  cache:
+    type: jcache
+    jcache:
+      provider: com.github.benmanes.caffeine.jcache.spi.CaffeineCachingProvider
+    cache-names: auth-rate-limit
+  jpa:
+    open-in-view: false
+
+bucket4j:
+  enabled: false
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus,info
+  endpoint:
+    health:
+      show-details: when_authorized
+    prometheus:
+      enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+        okhttp.call: true
+    tags:
+      application: ${spring.application.name}
+
+logging:
+  level:
+    TIMING: INFO
+    TIMING.HTTP: INFO
+    TIMING.PHASE: INFO
+    MEMORY: INFO
+
+app:
+  supabase:
+    url: ${APP_SUPABASE_URL:https://uvawswfrfepmpdlgngnj.supabase.co}
+    anon-key: ${APP_SUPABASE_ANON_KEY:}
+    service-key: ${APP_SUPABASE_SERVICE_KEY:}
+    email-redirect-to: ${APP_FRONTEND_URL:}
+  rewe:
+    serviceType: DELIVERY
+    zipCode: ${APP_REWE_ZIP_CODE:}
+    marketId: ${APP_REWE_MARKET_ID:}
+    certFile: ${APP_REWE_CERT_FILE:}
+    keyFile: ${APP_REWE_KEY_FILE:}
+  picnic:
+    email: ${APP_PICNIC_EMAIL:}
+    password: ${APP_PICNIC_PASSWORD:}
+    auth-token: ${APP_PICNIC_AUTH_TOKEN:}
+    country: de
+  openai:
+    apiKey: ${APP_OPENAI_API_KEY:}
+    model: gpt-4o-mini
+  encryption-key: ${APP_ENCRYPTION_KEY:}

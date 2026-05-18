@@ -1,0 +1,14 @@
+# Development override — H2 in-memory DB, dev profile, no external credentials required
+# Usage: combined with docker-compose.yml via -f flag (see Makefile: make backend-docker-dev)
+#
+# postgres still starts (base file dependency), but backend ignores it — uses H2 instead.
+# This keeps the compose merge valid (avoids "depends on undefined service postgres").
+services:
+  backend:
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: ""
+      SPRING_DATASOURCE_USERNAME: ""
+      SPRING_DATASOURCE_PASSWORD: ""
+      APP_REWE_CERT_FILE: ""
+      APP_REWE_KEY_FILE: ""

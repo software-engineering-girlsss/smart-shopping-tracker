@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baskt — Groceries at the best price</title>
+  <meta name="description" content="Compare grocery prices across REWE and Picnic in real time. Find the cheapest basket for your weekly shop." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #F2EDE8;
+      --surface:      #FDFAF8;
+      --surface2:     #EAE3DC;
+      --border:       #DDD5CC;
+      --text:         #1B4332;
+      --text2:        #8B7B6E;
+      --accent:       #E8622A;
+      --accent-dark:  #C04E1E;
+      --accent-light: #FAE5DC;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(242, 237, 232, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(24px, 5vw, 80px);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo svg { flex-shrink: 0; }
+
+    .nav-logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.12s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-large {
+      padding: 14px 32px;
+      font-size: 16px;
+      border-radius: 14px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: clamp(72px, 10vw, 128px) clamp(24px, 5vw, 80px) clamp(64px, 8vw, 112px);
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text2);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stores {
+      margin-top: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stores-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .store-badge {
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .store-badge.rewe  { color: #CC0000; border-color: #f0cece; }
+    .store-badge.picnic { color: #FF6B35; border-color: #f5d9cd; }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      font-size: 16px;
+      color: var(--text2);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.65;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px);
+    }
+
+    .how-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      position: relative;
+      margin-top: 56px;
+    }
+
+    .step {
+      padding: 0 24px;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 28px;
+      right: 0;
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+    }
+
+    @media (max-width: 700px) {
+      .step:not(:last-child)::after { display: none; }
+      .step { padding: 24px 0; border-bottom: 1px solid var(--border); }
+      .step:last-child { border-bottom: none; }
+    }
+
+    .step-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .step h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.65;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      padding: clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px);
+      text-align: center;
+    }
+
+    .cta-banner-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .cta-banner p {
+      font-size: 16px;
+      color: var(--text2);
+      margin-bottom: 36px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.55);
+      padding: 32px clamp(24px, 5vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    footer p { font-size: 13px; }
+
+    footer a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+
+    footer a:hover { color: #fff; }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo" aria-label="Baskt home">
+      <svg viewBox="0 0 100 100" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="basket-clip">
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M 21 45 C 21 12 79 12 79 45"
+              stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+        <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"
+              fill="#F2EDE8"/>
+        <g clip-path="url(#basket-clip)" stroke="#8B7B6E" stroke-width="1.6" fill="none" opacity="0.55">
+          <line x1="0" y1="54" x2="100" y2="54"/>
+          <line x1="0" y1="68" x2="100" y2="68"/>
+          <line x1="0" y1="82" x2="100" y2="82"/>
+          <line x1="30" y1="38" x2="27" y2="96"/>
+          <line x1="50" y1="38" x2="50" y2="96"/>
+          <line x1="70" y1="38" x2="73" y2="96"/>
+        </g>
+        <rect x="6" y="34" width="88" height="12" rx="4" fill="#1B4332"/>
+      </svg>
+      <span class="nav-logo-text">Baskt</span>
+    </a>
+    <a href="https://app.baskt.me" class="btn btn-primary">Open App</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Price comparison · Germany</div>
+    <h1>Groceries at the<br/><span>best price</span> — every time.</h1>
+    <p>Compare prices across REWE and Picnic in real time. Build your basket once and always know where you save.</p>
+    <div class="hero-cta">
+      <a href="https://app.baskt.me" class="btn btn-primary btn-large">Start Shopping</a>
+    </div>
+    <div class="hero-stores">
+      <span class="hero-stores-label">Works with</span>
+      <span class="store-badge rewe">REWE</span>
+      <span class="store-badge picnic">Picnic</span>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-header">
+      <h2>Everything you need to shop smarter</h2>
+      <p>Baskt brings all your grocery stores into one place so you never overpay again.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>Real-time price comparison</h3>
+        <p>See live prices from REWE and Picnic side by side. Every search, every product — no guesswork.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Instant product search</h3>
+        <p>Find exactly what you need across all stores in seconds. Filter, sort, and pick the best deal.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛒</div>
+        <h3>Smart shopping cart</h3>
+        <p>Add items from any store into one cart. Baskt shows you the cheapest combination automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">❤️</div>
+        <h3>Save your favourites</h3>
+        <p>Pin the products you buy every week. One tap to add them back to your cart on your next shop.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="how-inner">
+      <div class="section-header">
+        <h2>How it works</h2>
+        <p>Three steps from idea to savings.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">Step 01</div>
+          <h3>Search for products</h3>
+          <p>Type any product name. Baskt searches REWE and Picnic at the same time and returns live results.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">Step 02</div>
+          <h3>Compare prices</h3>
+          <p>Each product shows prices from all available stores. Pick the cheapest option or mix and match.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">Step 03</div>
+          <h3>Build your basket</h3>
+          <p>Add items to your cart, see the running total, and head to checkout knowing you got the best deal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <h2>Ready to save on your groceries?</h2>
+      <p>Join Baskt and stop paying more than you have to.</p>
+      <a href="https://app.baskt.me" class="btn btn-primary btn-large">Get Started — It's Free</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <svg viewBox="0 0 100 100" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="basket-clip-footer">
+            <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z"/>
+          </clipPath>
+        </defs>
+        <path d="M 21 45 C 21 12 79 12 79 45" stroke="#E8622A" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+        <path d="M 8 40 L 92 40 L 82 90 Q 82 94 77 94 L 23 94 Q 18 94 18 90 Z" fill="rgba(255,255,255,0.15)"/>
+        <g clip-path="url(#basket-clip-footer)" stroke="rgba(255,255,255,0.3)" stroke-width="1.6" fill="none">
+          <line x1="0" y1="54" x2="100" y2="54"/>
+          <line x1="0" y1="68" x2="100" y2="68"/>
+          <line x1="0" y1="82" x2="100" y2="82"/>
+          <line x1="30" y1="38" x2="27" y2="96"/>
+          <line x1="50" y1="38" x2="50" y2="96"/>
+          <line x1="70" y1="38" x2="73" y2="96"/>
+        </g>
+        <rect x="6" y="34" width="88" height="12" rx="4" fill="rgba(255,255,255,0.9)"/>
+      </svg>
+      Baskt
+    </div>
+    <p>© 2026 Baskt · Germany's smarter way to grocery shop.</p>
+    <div class="footer-links">
+      <a href="https://app.baskt.me">App</a>
+    </div>
+  </footer>
+
+</body>
+</html>
